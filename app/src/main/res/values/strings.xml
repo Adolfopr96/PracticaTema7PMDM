@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mis lugares favoritos</string>
+    <string-array name="spinner">
+        <item>Comida Mexicana</item>
+        <item>Comida Francesa</item>
+        <item>Comida Española</item>
+        <item>Comida Coreana</item>
+        <item>Comida India</item>
+    </string-array>
+</resources>
