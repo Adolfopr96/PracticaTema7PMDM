@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.practicatema7pmdm.Model.Lugar;
@@ -46,14 +47,12 @@ public class CardAdapter extends ArrayAdapter {
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.list_item_card, parent, false);
-
             CardViewHolder viewHolder = new CardViewHolder();
             viewHolder.line1 = row.findViewById(R.id.line1);
-            viewHolder.line2 = row.findViewById(R.id.line2);
-
             Lugar p = getItem(position);
             viewHolder.line1.setText(p.getNombre());
-            viewHolder.line2.setText(p.getCantidad().toString());
+            RatingBar rb = row.findViewById(R.id.ratingBar);
+            rb.setRating(p.getValoracion());
             row.setTag(viewHolder);
         }
         return row;

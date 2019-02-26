@@ -10,9 +10,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.practicatema7pmdm.Model.Lugar;
+
+import java.util.List;
+
     public class MainActivity extends AppCompatActivity {
         public ListView listView;
-        private static List <Lugar> lstProd;
+        private static List<Lugar> lstProd;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -31,7 +35,7 @@ import android.widget.Toast;
                         public void onItemClick(AdapterView parent, View view, int position, long id) {
                             App.lugarActivo = lstProd.get(position - 1);
                             App.accion = App.INFORMACION;
-                            startActivity(new Intent(getApplicationContext(), InformacionActivity.class));
+                            //startActivity(new Intent(getApplicationContext(), InformacionActivity.class));
                         }
                     }
             );
@@ -41,7 +45,7 @@ import android.widget.Toast;
         protected void onResume() {
             super.onResume();
             CardAdapter listadoDeCards = new CardAdapter(getApplicationContext(), R.layout.list_item_card);
-            lstProd = LogicLugar.listaProductos(this);
+            //lstProd = LogicLugar.listaProductos(this);
             if (lstProd == null) {
                 Toast.makeText(this, "La base de datos está vacía.", Toast.LENGTH_LONG).show();
             } else {
@@ -56,6 +60,6 @@ import android.widget.Toast;
         public void clicNuevo(View view) {
             App.lugarActivo = new Lugar();
             App.accion = App.INSERTAR;
-            startActivity(new Intent(this, nuevoLugar.class));
+            //startActivity(new Intent(this, nuevoLugar.class));
         }
 }

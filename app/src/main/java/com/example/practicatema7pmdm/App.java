@@ -1,5 +1,7 @@
 package com.example.practicatema7pmdm;
 
+import com.example.practicatema7pmdm.Model.Lugar;
+
 public class App
 {
     public final static int INSERTAR = 1;
