@@ -19,6 +19,7 @@ import java.util.List;
         public ListView listView;
         ImageView imagen1;
         Intent i;
+        Intent i1;
         private static List<Lugar> lstProd;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ import java.util.List;
             setContentView(R.layout.activity_main);
             imagen1 = findViewById(R.id.imageView);
             i = new Intent(this, Mapa.class);
+            i1 = new Intent(this, NuevoEdicion.class);
             Spinner spinner = (Spinner) findViewById(R.id.spinner);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinner, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,6 +73,7 @@ import java.util.List;
         public void clicNuevo(View view) {
             App.lugarActivo = new Lugar();
             App.accion = App.INSERTAR;
+            startActivity(i1);
             //startActivity(new Intent(this, nuevoLugar.class));
         }
 }
