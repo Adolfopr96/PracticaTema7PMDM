@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Mis lugares favoritos</string>
+    <string name="app_name1">Mis lugares favoritos</string>
     <string-array name="spinner">
         <item>Comida Mexicana</item>
         <item>Comida Francesa</item>
