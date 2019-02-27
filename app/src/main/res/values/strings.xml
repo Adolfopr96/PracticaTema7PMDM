@@ -11,7 +11,7 @@
         <item>Comida Coreana</item>
         <item>Comida India</item>
     </string-array>
-
+    <string name="toast1">Se ha creado correctamente</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="longitud">Longitud</string>

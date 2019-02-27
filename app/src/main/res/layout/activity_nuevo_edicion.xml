@@ -70,7 +70,7 @@
             android:layout_width="156dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/editText3"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
         <ImageView
             android:id="@+id/imageView2"
