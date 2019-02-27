@@ -89,6 +89,5 @@ import java.util.List;
             App.lugarActivo = new Lugar();
             App.accion = App.INSERTAR;
             startActivity(i1);
-            //startActivity(new Intent(this, nuevoLugar.class));
         }
 }
