@@ -47,30 +47,6 @@ public class NuevoEdicion extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        int categoria=0;
-        /*texto = spinner.getSelectedItem().toString();
-        if(texto=="Comida Mexicana")
-        {
-            categoria=1;
-        }
-        else if(texto=="Comida Francesa")
-        {
-            categoria=2;
-        }
-        else if(texto=="Comida Española")
-        {
-            categoria=3;
-        }
-        else if(texto=="Comida Coreana")
-        {
-            categoria=4;
-        }
-        //Comida India
-        else
-        {
-            categoria=5;
-        }
-        */
         App.lugarActivo.setNombre(edit1.getText().toString());
         App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
         App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
