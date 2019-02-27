@@ -3,14 +3,20 @@
     <string name="app_name">Mis lugares favoritos</string>
     <string name="app_name1">LUGARES:</string>
     <string name="app_name2">EDICIÓN</string>
+    <string name="app_name3">INFORMACIÓN</string>
     <string name="nombre">Nombre:</string>
     <string name="categoria">Categoria:</string>
+    <string name="categoria1">Mexicana</string>
+    <string name="categoria2">Francesa</string>
+    <string name="categoria3">Española</string>
+    <string name="categoria4">Coreana</string>
+    <string name="categoria5">India</string>
     <string-array name="spinner">
-        <item>Comida Mexicana</item>
-        <item>Comida Francesa</item>
-        <item>Comida Española</item>
-        <item>Comida Coreana</item>
-        <item>Comida India</item>
+        <item>@string/categoria1</item>
+        <item>@string/categoria2</item>
+        <item>@string/categoria3</item>
+        <item>@string/categoria4</item>
+        <item>@string/categoria5</item>
     </string-array>
     <string name="toast1">Se ha creado correctamente</string>
     <!-- TODO: Remove or change this placeholder text -->
