@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Mis lugares favoritos</string>
     <string name="app_name1">LUGARES:</string>
     <string name="app_name2">EDICIÓN</string>
@@ -19,4 +20,5 @@
     <string name="valoracion">Valoración:</string>
     <string name="comentarios">Comentarios:</string>
     <string name="guardar">Guardar</string>
+
 </resources>

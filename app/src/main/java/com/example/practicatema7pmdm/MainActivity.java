@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.practicatema7pmdm.Logic.LogicLugar;
 import com.example.practicatema7pmdm.Model.Lugar;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
         ImageView imagen1;
         Intent i;
         Intent i1;
+        Spinner spinner;
         private static List<Lugar> lstProd;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ import java.util.List;
             imagen1 = findViewById(R.id.imageView);
             i = new Intent(this, Mapa.class);
             i1 = new Intent(this, NuevoEdicion.class);
-            Spinner spinner = (Spinner) findViewById(R.id.spinner);
+            spinner = findViewById(R.id.spinner);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinner, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);
@@ -38,10 +40,21 @@ import java.util.List;
                    startActivity(i);
                 }
             });
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                {
+                    mostrarDatos();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
             listView = findViewById(R.id.card_listView);
             listView.addHeaderView(new View(this)); // añade espacio arriba de la primera card
             listView.addFooterView(new View(this)); // añade espacio debajo de la última card
-
             listView.setOnItemClickListener(
                     new AdapterView.OnItemClickListener() {
                         @Override
@@ -53,14 +66,17 @@ import java.util.List;
                     }
             );
         }
-
         @Override
         protected void onResume() {
             super.onResume();
+            mostrarDatos();
+        }
+
+        public void mostrarDatos() {
             CardAdapter listadoDeCards = new CardAdapter(getApplicationContext(), R.layout.list_item_card);
-            //lstProd = LogicLugar.listaProductos(this);
+            lstProd = LogicLugar.listaLugar1(this, spinner);
             if (lstProd == null) {
-                Toast.makeText(this, "La base de datos está vacía.", Toast.LENGTH_LONG).show();
+                listView.setAdapter(null);
             } else {
                 for (Lugar p : lstProd) {
                     listadoDeCards.add(p);
@@ -68,7 +84,6 @@ import java.util.List;
                 listView.setAdapter(listadoDeCards);
             }
         }
-
         //Nueva activity
         public void clicNuevo(View view) {
             App.lugarActivo = new Lugar();

@@ -20,7 +20,6 @@ public class NuevoEdicion extends AppCompatActivity {
     EditText edit1, edit2, edit3, edit4;
     RatingBar rb;
     Spinner spinner;
-    String texto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

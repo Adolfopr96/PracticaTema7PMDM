@@ -18,7 +18,6 @@ public class CardAdapter extends ArrayAdapter {
 
     static class CardViewHolder {
         TextView line1;
-        TextView line2;
     }
 
     public CardAdapter(Context context, int textViewResourceId) {
