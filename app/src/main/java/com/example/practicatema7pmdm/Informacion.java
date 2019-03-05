@@ -1,6 +1,10 @@
 package com.example.practicatema7pmdm;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
@@ -10,6 +14,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.practicatema7pmdm.DataBaseManager.DB_SQLite;
+import com.example.practicatema7pmdm.DataBaseManager.Esquema;
 import com.example.practicatema7pmdm.Logic.LogicLugar;
 
 public class Informacion extends AppCompatActivity {
@@ -48,7 +54,44 @@ public class Informacion extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-
+        switch (item.getItemId())
+        {
+            case R.id.opcion1:
+                startActivity(new Intent(getApplicationContext(), NuevoEdicion.class));
+                break;
+            case R.id.opcion2:
+                confirmacion();
+                break;
+        }
         return false;
+    }
+    private void confirmacion()
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("Borrar datos")
+                .setMessage("¿Está seguro de borrar los datos?")
+                .setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        // Borrar aquí todos estos datos
+                        borrarBD();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+    private void borrarBD()
+    {
+        DB_SQLite db = new DB_SQLite(this);
+        SQLiteDatabase conn = db.getWritableDatabase();
+        String sqlWhere = Esquema.Lugar.COLUMN_NAME_ID + " LIKE '" + App.lugarActivo.getId() + "'";
+        int count = conn.delete(Esquema.Lugar.TABLE_NAME, sqlWhere, null);
+        conn.close();
     }
 }
