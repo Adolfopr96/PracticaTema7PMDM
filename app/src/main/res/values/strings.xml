@@ -26,5 +26,6 @@
     <string name="valoracion">Valoración:</string>
     <string name="comentarios">Comentarios:</string>
     <string name="guardar">Guardar</string>
-
+    <string name="editar">Editar</string>
+    <string name="Borrar">Borrar</string>
 </resources>
