@@ -16,6 +16,10 @@ import android.widget.Toast;
 
 import com.example.practicatema7pmdm.Logic.LogicLugar;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class NuevoEdicion extends AppCompatActivity {
     EditText edit1, edit2, edit3, edit4;
     RatingBar rb;

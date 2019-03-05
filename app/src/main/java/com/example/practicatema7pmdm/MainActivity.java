@@ -44,7 +44,15 @@ import java.util.List;
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                 {
-                    mostrarDatos();
+                    if(spinner.getSelectedItem().toString() == getResources().getString(R.string.global))
+                    {
+                        mostrarTodo();
+                    }
+                    else
+                    {
+                        mostrarDatosEspecifico();
+
+                    }
                 }
 
                 @Override
@@ -68,14 +76,35 @@ import java.util.List;
             );
         }
         @Override
-        protected void onResume() {
+        protected void onResume()
+        {
             super.onResume();
-            mostrarDatos();
+            if(spinner.getSelectedItem().toString() == getResources().getString(R.string.global))
+            {
+
+            }
+            else
+            {
+                mostrarDatosEspecifico();
+            }
         }
 
-        public void mostrarDatos() {
+        public void mostrarDatosEspecifico() {
             CardAdapter listadoDeCards = new CardAdapter(getApplicationContext(), R.layout.list_item_card);
             lstProd = LogicLugar.listaLugar1(this, spinner);
+            if (lstProd == null) {
+                listView.setAdapter(null);
+            } else {
+                for (Lugar p : lstProd) {
+                    listadoDeCards.add(p);
+                }
+                listView.setAdapter(listadoDeCards);
+            }
+        }
+        public void mostrarTodo()
+        {
+            CardAdapter listadoDeCards = new CardAdapter(getApplicationContext(), R.layout.list_item_card);
+            lstProd = LogicLugar.listaLugar(this);
             if (lstProd == null) {
                 listView.setAdapter(null);
             } else {

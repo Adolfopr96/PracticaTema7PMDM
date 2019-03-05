@@ -12,6 +12,7 @@
     <string name="categoria4">Coreana</string>
     <string name="categoria5">India</string>
     <string-array name="spinner">
+        <item>@string/global</item>
         <item>@string/categoria1</item>
         <item>@string/categoria2</item>
         <item>@string/categoria3</item>
@@ -28,4 +29,5 @@
     <string name="guardar">Guardar</string>
     <string name="editar">Editar</string>
     <string name="Borrar">Borrar</string>
+    <string name="global">Global</string>
 </resources>
