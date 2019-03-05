@@ -61,6 +61,7 @@ import java.util.List;
                         public void onItemClick(AdapterView parent, View view, int position, long id) {
                             App.lugarActivo = lstProd.get(position - 1);
                             App.accion = App.INFORMACION;
+                            App.categoriaSeleccionada = spinner.getSelectedItem().toString();
                             startActivity(new Intent(getApplicationContext(), Informacion.class));
                         }
                     }
