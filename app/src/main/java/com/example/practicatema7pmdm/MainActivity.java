@@ -61,7 +61,7 @@ import java.util.List;
                         public void onItemClick(AdapterView parent, View view, int position, long id) {
                             App.lugarActivo = lstProd.get(position - 1);
                             App.accion = App.INFORMACION;
-                            //startActivity(new Intent(getApplicationContext(), InformacionActivity.class));
+                            startActivity(new Intent(getApplicationContext(), Informacion.class));
                         }
                     }
             );
@@ -88,6 +88,8 @@ import java.util.List;
         public void clicNuevo(View view) {
             App.lugarActivo = new Lugar();
             App.accion = App.INSERTAR;
+            //Usamos esto para separar ir al edicion/nuevo a través de información
+            //App.SALIDAINFORMACION=2;
             startActivity(i1);
         }
 }
