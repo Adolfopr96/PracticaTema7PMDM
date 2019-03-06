@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.practicatema7pmdm.Logic.LogicLugar;
 import com.example.practicatema7pmdm.Model.Lugar;
 
+import java.util.ArrayList;
 import java.util.List;
 
     public class MainActivity extends AppCompatActivity {
@@ -31,9 +32,25 @@ import java.util.List;
             i = new Intent(this, Mapa.class);
             i1 = new Intent(this, NuevoEdicion.class);
             spinner = findViewById(R.id.spinner);
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinner, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
+            //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinner, android.R.layout.simple_spinner_item);
+            //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            List<String> list = new ArrayList<String>();
+            list.add(getResources().getString(R.string.global));
+            list.add(getResources().getString(R.string.categoria1));
+            list.add(getResources().getString(R.string.categoria2));
+            list.add(getResources().getString(R.string.categoria3));
+            list.add(getResources().getString(R.string.categoria4));
+            list.add(getResources().getString(R.string.categoria5));
+            final int listsize = list.size();
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, list) {
+                @Override
+                public int getCount() {
+                    return(listsize); // Truncate the list
+                }
+            };
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(dataAdapter);
+            //spinner.setAdapter(adapter);
             imagen1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

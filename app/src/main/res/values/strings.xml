@@ -11,14 +11,6 @@
     <string name="categoria3">Española</string>
     <string name="categoria4">Coreana</string>
     <string name="categoria5">India</string>
-    <string-array name="spinner">
-        <item>@string/global</item>
-        <item>@string/categoria1</item>
-        <item>@string/categoria2</item>
-        <item>@string/categoria3</item>
-        <item>@string/categoria4</item>
-        <item>@string/categoria5</item>
-    </string-array>
     <string name="toast1">Se ha creado correctamente</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -34,9 +34,21 @@ public class NuevoEdicion extends AppCompatActivity {
         edit4 = findViewById(R.id.editText4);
         spinner =findViewById(R.id.spinner2);
         rb = findViewById(R.id.ratingBar2);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        List<String> list = new ArrayList<String>();
+        list.add(getResources().getString(R.string.categoria1));
+        list.add(getResources().getString(R.string.categoria2));
+        list.add(getResources().getString(R.string.categoria3));
+        list.add(getResources().getString(R.string.categoria4));
+        list.add(getResources().getString(R.string.categoria5));
+        final int listsize = list.size();
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, list) {
+            @Override
+            public int getCount() {
+                return(listsize); // Truncate the list
+            }
+        };
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -55,9 +67,10 @@ public class NuevoEdicion extends AppCompatActivity {
         App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
         App.lugarActivo.setComentarios(edit4.getText().toString());
         App.lugarActivo.setValoracion(rb.getRating());
-        App.lugarActivo.setCategoria(spinner.getSelectedItemPosition());
+        App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);
         LogicLugar.insertarLugar(this, App.lugarActivo );
         Toast.makeText(this, getResources().getString(R.string.toast1), Toast.LENGTH_SHORT).show();
+        finish();
         return false;
     }
 }
