@@ -18,25 +18,23 @@ import com.example.practicatema7pmdm.DataBaseManager.DB_SQLite;
 import com.example.practicatema7pmdm.DataBaseManager.Esquema;
 import com.example.practicatema7pmdm.Logic.LogicLugar;
 
+import java.util.List;
+
 public class Informacion extends AppCompatActivity {
 
-    TextView txt1, txt2, txt3, txt4, txt5;
-    RatingBar rb;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion);
-        txt1 = findViewById(R.id.textView11);
-        txt2 = findViewById(R.id.textView12);
-        txt3 = findViewById(R.id.textView13);
-        txt4 = findViewById(R.id.textView14);
-        txt5 = findViewById(R.id.textView17);
-        rb = findViewById(R.id.ratingBar3);
-        //Pondremos SALIDAINFORMACION=1 PARA IDENTIFICAR EN QUE MOMENTO HEMOS ENTRADO POR INFORMACIÓN EN VEZ DE NUEVO.
-        //App.SALIDAINFORMACION=1;
+        TextView txt1 = findViewById(R.id.textView11);
+        TextView txt2 = findViewById(R.id.textView12);
+        TextView txt3 = findViewById(R.id.textView13);
+        TextView txt4 = findViewById(R.id.textView14);
+        TextView txt5 = findViewById(R.id.textView17);
+        RatingBar rb = findViewById(R.id.ratingBar3);
+        txt2.setText(App.getListCategorias(this).get(App.lugarActivo.getCategoria()-1));
         txt1.setText(App.lugarActivo.getNombre());
-        txt2.setText(App.categoriaSeleccionada);
         txt3.setText(App.lugarActivo.getLongitud().toString());
         txt4.setText(App.lugarActivo.getLatitud().toString());
         txt5.setText(App.lugarActivo.getComentarios());
@@ -57,6 +55,7 @@ public class Informacion extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.opcion1:
+                App.SALIDAINFORMACION=1;
                 startActivity(new Intent(getApplicationContext(), NuevoEdicion.class));
                 break;
             case R.id.opcion2:
@@ -91,7 +90,7 @@ public class Informacion extends AppCompatActivity {
         DB_SQLite db = new DB_SQLite(this);
         SQLiteDatabase conn = db.getWritableDatabase();
         String sqlWhere = Esquema.Lugar.COLUMN_NAME_ID + " LIKE '" + App.lugarActivo.getId() + "'";
-        int count = conn.delete(Esquema.Lugar.TABLE_NAME, sqlWhere, null);
+        conn.delete(Esquema.Lugar.TABLE_NAME, sqlWhere, null);
         conn.close();
     }
 }

@@ -86,7 +86,6 @@ import java.util.List;
                         public void onItemClick(AdapterView parent, View view, int position, long id) {
                             App.lugarActivo = lstProd.get(position - 1);
                             App.accion = App.INFORMACION;
-                            App.categoriaSeleccionada = spinner.getSelectedItem().toString();
                             startActivity(new Intent(getApplicationContext(), Informacion.class));
                         }
                     }
@@ -98,7 +97,7 @@ import java.util.List;
             super.onResume();
             if(spinner.getSelectedItem().toString() == getResources().getString(R.string.global))
             {
-
+            mostrarTodo();
             }
             else
             {
@@ -136,7 +135,7 @@ import java.util.List;
             App.lugarActivo = new Lugar();
             App.accion = App.INSERTAR;
             //Usamos esto para separar ir al edicion/nuevo a través de información
-            //App.SALIDAINFORMACION=2;
+            App.SALIDAINFORMACION=2;
             startActivity(i1);
         }
 }

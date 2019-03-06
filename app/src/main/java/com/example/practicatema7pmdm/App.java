@@ -1,6 +1,11 @@
 package com.example.practicatema7pmdm;
 
+import android.content.Context;
+
 import com.example.practicatema7pmdm.Model.Lugar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class App
 {
@@ -10,6 +15,13 @@ public class App
     public static int SALIDAINFORMACION;
     public static int accion;
     public static Lugar lugarActivo;
-    //Variable que guarda la cateooría como texto
-    public static String categoriaSeleccionada;
+    public static List<String> getListCategorias(Context context) {
+        List<String> list = new ArrayList<String>();
+        list.add(context.getResources().getString(R.string.categoria1));
+        list.add(context.getResources().getString(R.string.categoria2));
+        list.add(context.getResources().getString(R.string.categoria3));
+        list.add(context.getResources().getString(R.string.categoria4));
+        list.add(context.getResources().getString(R.string.categoria5));
+        return list;
+    }
 }

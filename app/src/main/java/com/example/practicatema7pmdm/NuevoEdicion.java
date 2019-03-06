@@ -1,13 +1,11 @@
 package com.example.practicatema7pmdm;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -16,8 +14,6 @@ import android.widget.Toast;
 
 import com.example.practicatema7pmdm.Logic.LogicLugar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class NuevoEdicion extends AppCompatActivity {
@@ -34,12 +30,7 @@ public class NuevoEdicion extends AppCompatActivity {
         edit4 = findViewById(R.id.editText4);
         spinner =findViewById(R.id.spinner2);
         rb = findViewById(R.id.ratingBar2);
-        List<String> list = new ArrayList<String>();
-        list.add(getResources().getString(R.string.categoria1));
-        list.add(getResources().getString(R.string.categoria2));
-        list.add(getResources().getString(R.string.categoria3));
-        list.add(getResources().getString(R.string.categoria4));
-        list.add(getResources().getString(R.string.categoria5));
+        List<String> list = App.getListCategorias(this);
         final int listsize = list.size();
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, list) {
             @Override
@@ -49,6 +40,20 @@ public class NuevoEdicion extends AppCompatActivity {
         };
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+        //Viene de información
+        if(App.SALIDAINFORMACION==1)
+        {
+            edit1.setText(App.lugarActivo.getNombre());
+            spinner.setSelection(App.lugarActivo.getCategoria()-1);
+            edit2.setText(App.lugarActivo.getLongitud().toString());
+            edit3.setText(App.lugarActivo.getLatitud().toString());
+            rb.setRating(App.lugarActivo.getValoracion());
+            edit4.setText(App.lugarActivo.getComentarios());
+        }
+        else if(App.SALIDAINFORMACION==2)
+        {
+
+        }
     }
     @SuppressLint("RestrictedApi")
     @Override
@@ -62,15 +67,22 @@ public class NuevoEdicion extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        App.lugarActivo.setNombre(edit1.getText().toString());
-        App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
-        App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
-        App.lugarActivo.setComentarios(edit4.getText().toString());
-        App.lugarActivo.setValoracion(rb.getRating());
-        App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);
-        LogicLugar.insertarLugar(this, App.lugarActivo );
-        Toast.makeText(this, getResources().getString(R.string.toast1), Toast.LENGTH_SHORT).show();
-        finish();
+        if(!edit1.getText().toString().isEmpty() && !edit2.getText().toString().isEmpty() && !edit3.toString().isEmpty() && !edit4.toString().isEmpty())
+        {
+            App.lugarActivo.setNombre(edit1.getText().toString());
+            App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
+            App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
+            App.lugarActivo.setComentarios(edit4.getText().toString());
+            App.lugarActivo.setValoracion(rb.getRating());
+            App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);
+            LogicLugar.insertarLugar(this, App.lugarActivo );
+            Toast.makeText(this, getResources().getString(R.string.toast1), Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        else
+        {
+
+        }
         return false;
     }
 }
