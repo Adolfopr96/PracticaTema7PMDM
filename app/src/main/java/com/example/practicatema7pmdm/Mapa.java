@@ -77,14 +77,14 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback, Google
     @Override
     public boolean onMarkerClick(final Marker marker) {
 
-        Integer clickCount = (Integer) marker.getTag();
+       /* Integer clickCount = (Integer) marker.getTag();
 
         if (clickCount != null) {
             clickCount = clickCount + 1;
             marker.setTag(clickCount);
             Toast.makeText(this, marker.getTitle() + " ha sido pulsado " + clickCount + " veces.", Toast.LENGTH_SHORT).show();
         }
-
+        */
         return false;
     }
 }
