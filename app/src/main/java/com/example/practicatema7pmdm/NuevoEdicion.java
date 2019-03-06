@@ -69,15 +69,31 @@ public class NuevoEdicion extends AppCompatActivity {
     {
         if(!edit1.getText().toString().isEmpty() && !edit2.getText().toString().isEmpty() && !edit3.toString().isEmpty() && !edit4.toString().isEmpty())
         {
-            App.lugarActivo.setNombre(edit1.getText().toString());
-            App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
-            App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
-            App.lugarActivo.setComentarios(edit4.getText().toString());
-            App.lugarActivo.setValoracion(rb.getRating());
-            App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);
-            LogicLugar.insertarLugar(this, App.lugarActivo );
-            Toast.makeText(this, getResources().getString(R.string.toast1), Toast.LENGTH_SHORT).show();
-            finish();
+            if(App.SALIDAINFORMACION==1)
+            {
+                //Hacer aquí update
+                App.lugarActivo.setNombre(edit1.getText().toString());
+                App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
+                App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
+                App.lugarActivo.setComentarios(edit4.getText().toString());
+                App.lugarActivo.setValoracion(rb.getRating());
+                App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);
+                LogicLugar.editarLugar(this, App.lugarActivo );
+                Toast.makeText(this, getResources().getString(R.string.toast2), Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else
+            {
+                App.lugarActivo.setNombre(edit1.getText().toString());
+                App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
+                App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
+                App.lugarActivo.setComentarios(edit4.getText().toString());
+                App.lugarActivo.setValoracion(rb.getRating());
+                App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);
+                LogicLugar.insertarLugar(this, App.lugarActivo );
+                Toast.makeText(this, getResources().getString(R.string.toast1), Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
         else
         {

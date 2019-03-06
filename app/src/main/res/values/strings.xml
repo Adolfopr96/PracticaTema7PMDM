@@ -22,4 +22,5 @@
     <string name="editar">Editar</string>
     <string name="Borrar">Borrar</string>
     <string name="global">Global</string>
+    <string name="toast2">Se ha editado correctamente</string>
 </resources>

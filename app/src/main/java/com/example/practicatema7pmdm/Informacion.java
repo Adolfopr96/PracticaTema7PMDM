@@ -55,10 +55,12 @@ public class Informacion extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.opcion1:
+                finish();
                 App.SALIDAINFORMACION=1;
                 startActivity(new Intent(getApplicationContext(), NuevoEdicion.class));
                 break;
             case R.id.opcion2:
+                finish();
                 confirmacion();
                 break;
         }
