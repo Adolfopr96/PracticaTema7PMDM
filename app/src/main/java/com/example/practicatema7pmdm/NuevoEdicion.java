@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ public class NuevoEdicion extends AppCompatActivity {
     EditText edit1, edit2, edit3, edit4;
     RatingBar rb;
     Spinner spinner;
+    ImageView imagen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,7 @@ public class NuevoEdicion extends AppCompatActivity {
         edit4 = findViewById(R.id.editText4);
         spinner =findViewById(R.id.spinner2);
         rb = findViewById(R.id.ratingBar2);
+        imagen = findViewById(R.id.imageView2);
         List<String> list = App.getListCategorias(this);
         final int listsize = list.size();
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, list) {
@@ -38,6 +42,12 @@ public class NuevoEdicion extends AppCompatActivity {
                 return(listsize); // Truncate the list
             }
         };
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
         //Viene de información
