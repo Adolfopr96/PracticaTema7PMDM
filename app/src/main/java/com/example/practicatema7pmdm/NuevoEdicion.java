@@ -135,8 +135,8 @@ public class NuevoEdicion extends AppCompatActivity implements LocationListener 
             {
                 //Hacer aquí update
                 App.lugarActivo.setNombre(edit1.getText().toString());
-                App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
-                App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
+                App.lugarActivo.setLatitud(Double.parseDouble(edit3.getText().toString()));
+                App.lugarActivo.setLongitud(Double.parseDouble(edit2.getText().toString()));
                 App.lugarActivo.setComentarios(edit4.getText().toString());
                 App.lugarActivo.setValoracion(rb.getRating());
                 App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);
@@ -147,8 +147,8 @@ public class NuevoEdicion extends AppCompatActivity implements LocationListener 
             else
             {
                 App.lugarActivo.setNombre(edit1.getText().toString());
-                App.lugarActivo.setLatitud(Float.parseFloat(edit3.getText().toString()));
-                App.lugarActivo.setLongitud(Float.parseFloat(edit2.getText().toString()));
+                App.lugarActivo.setLatitud(Double.parseDouble(edit3.getText().toString()));
+                App.lugarActivo.setLongitud(Double.parseDouble(edit2.getText().toString()));
                 App.lugarActivo.setComentarios(edit4.getText().toString());
                 App.lugarActivo.setValoracion(rb.getRating());
                 App.lugarActivo.setCategoria(spinner.getSelectedItemPosition()+1);

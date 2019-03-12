@@ -1,9 +1,12 @@
 package com.example.practicatema7pmdm;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,28 +40,59 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback, Google
     }
 
     public void mostrarTodo() {
+
+        float colorMarcador[] = {0.0f, 0.0f, 210.0f, 240.0f,180.0f, 120.0f};
+
+/*
+        Log.i("MyApp", "COLOR ROJO:"+ BitmapDescriptorFactory.HUE_RED);
+        Log.i("MyApp", "COLOR AZURE:"+ BitmapDescriptorFactory.HUE_AZURE);
+        Log.i("MyApp", "COLOR BLUE:"+ BitmapDescriptorFactory.HUE_BLUE)c;
+        Log.i("MyApp", "COLOR CYAN:"+ BitmapDescriptorFactory.HUE_CYAN);
+        Log.i("MyApp", "COLOR GREEN:"+ BitmapDescriptorFactory.HUE_GREEN);
+*/
+
+        //Log.i("MyApp", "COLOR 01:"+ R.color.clrMarcador01);
+/*
+        float colorMarcador[] = new float[6];
+        colorMarcador[1] = 0.0f + getResources().getColor(R.color.clrMarcador01);
+        colorMarcador[2] = 0.0f + getResources().getColor(R.color.clrMarcador02);
+        colorMarcador[3] = 0.0f + getResources().getColor(R.color.clrMarcador03);
+        colorMarcador[4] = 0.0f + getResources().getColor(R.color.clrMarcador04);
+        colorMarcador[5] = 0.0f + getResources().getColor(R.color.clrMarcador05);
+
+for(int i=1;i<5; i++) {
+    Log.i("MyApp" , "Color: " + colorMarcador[i]);
+}
+
+*/
+        Log.i("MyApp" , "Color: " + App.categoriaSpinnerMapa);
+    if(App.categoriaSpinnerMapa==0)
+    {
         List<Lugar> lstLugar = LogicLugar.listaLugar(this);
-        if (lstLugar == null) {
-        } else {
+        if (lstLugar == null)
+        {
 
+        }
+        else {
             for (Lugar p : lstLugar) {
+                Log.i("MyApp", p.toString());
                 nuevaPosicion = new LatLng(p.getLatitud(), p.getLongitud());
-                if (p.getCategoria() == 1) {
-
-                    mMap.addMarker(new MarkerOptions().position(nuevaPosicion).title(p.getNombre()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                } else if (p.getCategoria() == 2) {
-                    mMap.addMarker(new MarkerOptions().position(nuevaPosicion).title(p.getNombre()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                } else if (p.getCategoria() == 3) {
-                    mMap.addMarker(new MarkerOptions().position(nuevaPosicion).title(p.getNombre()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                }
-                else if (p.getCategoria() == 4) {
-                    mMap.addMarker(new MarkerOptions().position(nuevaPosicion).title(p.getNombre()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
-                }
-                else if (p.getCategoria() == 5) {
-                    mMap.addMarker(new MarkerOptions().position(nuevaPosicion).title(p.getNombre()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                }
+                mMap.addMarker(new MarkerOptions().position(nuevaPosicion).snippet("" +p.getLongitud() + "_" + p.getLatitud()).title(p.getNombre()).icon(BitmapDescriptorFactory.defaultMarker(colorMarcador[p.getCategoria()])));
             }
         }
+    }
+    else
+    {
+        List<Lugar> lstLugar = LogicLugar.listaLugar2(this, App.categoriaSpinnerMapa);
+        if (lstLugar == null) {
+        } else {
+            for (Lugar p : lstLugar) {
+                nuevaPosicion = new LatLng(p.getLatitud(), p.getLongitud());
+                mMap.addMarker(new MarkerOptions().position(nuevaPosicion).snippet("" +p.getLongitud() + "_" + p.getLatitud()).title(p.getNombre()).icon(BitmapDescriptorFactory.defaultMarker(colorMarcador[p.getCategoria()])));
+            }
+        }
+    }
+
     }
 
     @Override
@@ -76,7 +110,25 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback, Google
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
+        Log.i("MyApp", "Marcador:"+ marker.toString());
+        Log.i("MyApp", "Marcador:"+ marker.getId());
+        Log.i("MyApp", "Marcador:"+ marker.getSnippet());
+        String cadena = marker.getSnippet();
+        String[] separated = cadena.split("_");
+        String longitud = separated[0];
+        String latitud = separated[1];
 
+        Log.i("MyaPP" , "Buscando Long: " + longitud + " Lat: " + latitud);
+        Lugar l = LogicLugar.getLugar(this, latitud, longitud);
+        if(l==null) {
+            Log.i("MyaPP" , "Lugar NO ENCONTRADO");
+        } else {
+            App.lugarActivo =l;
+            Log.i("MyaPP" , "Lugar obtenido: " + App.lugarActivo.toString());
+        }
+
+
+        startActivity(new Intent(getApplicationContext(), Informacion.class));
        /* Integer clickCount = (Integer) marker.getTag();
 
         if (clickCount != null) {

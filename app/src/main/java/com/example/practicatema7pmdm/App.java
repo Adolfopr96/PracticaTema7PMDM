@@ -15,6 +15,7 @@ public class App
     public static int SALIDAINFORMACION;
     public static int accion;
     public static Lugar lugarActivo;
+    public static int categoriaSpinnerMapa;
     public static List<String> getListCategorias(Context context) {
         List<String> list = new ArrayList<String>();
         list.add(context.getResources().getString(R.string.categoria1));

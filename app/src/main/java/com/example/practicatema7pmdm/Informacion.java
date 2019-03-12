@@ -33,12 +33,20 @@ public class Informacion extends AppCompatActivity {
         TextView txt4 = findViewById(R.id.textView14);
         TextView txt5 = findViewById(R.id.textView17);
         RatingBar rb = findViewById(R.id.ratingBar3);
-        txt2.setText(App.getListCategorias(this).get(App.lugarActivo.getCategoria()-1));
-        txt1.setText(App.lugarActivo.getNombre());
-        txt3.setText(App.lugarActivo.getLongitud().toString());
-        txt4.setText(App.lugarActivo.getLatitud().toString());
-        txt5.setText(App.lugarActivo.getComentarios());
-        rb.setRating(App.lugarActivo.getValoracion());
+        if(App.lugarActivo!=null)
+        {
+            txt2.setText(App.getListCategorias(this).get(App.lugarActivo.getCategoria()-1));
+            txt1.setText(App.lugarActivo.getNombre());
+            txt3.setText(App.lugarActivo.getLongitud().toString());
+            txt4.setText(App.lugarActivo.getLatitud().toString());
+            txt5.setText(App.lugarActivo.getComentarios());
+            rb.setRating(App.lugarActivo.getValoracion());
+        }
+        else
+        {
+
+        }
+
     }
     @SuppressLint("RestrictedApi")
     @Override

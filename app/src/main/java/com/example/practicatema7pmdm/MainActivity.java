@@ -54,7 +54,9 @@ import java.util.List;
             imagen1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   startActivity(i);
+                  // App.categoriaSpinnerMapa = spinner.getSelectedItem().toString();
+                    App.categoriaSpinnerMapa = (int) (long) spinner.getSelectedItemId();
+                    startActivity(i);
                 }
             });
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

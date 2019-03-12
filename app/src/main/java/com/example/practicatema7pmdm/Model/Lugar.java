@@ -1,11 +1,13 @@
 package com.example.practicatema7pmdm.Model;
 
+import android.util.Log;
+
 public class Lugar
 {
     private Long id;
     private String nombre;
-    private Float latitud;
-    private Float longitud;
+    private Double latitud;
+    private Double longitud;
     private String comentarios;
     private Float valoracion;
     private Integer categoria;
@@ -20,7 +22,7 @@ public class Lugar
         this.categoria=0;
     }
 
-    public Lugar(String nombre, Float latitud, Float longitud, String comentarios, Float valoracion, Integer categoria) {
+    public Lugar(String nombre, Double latitud, Double longitud, String comentarios, Float valoracion, Integer categoria) {
         this.id = null;
         this.nombre = nombre;
         this.latitud=latitud;
@@ -30,7 +32,7 @@ public class Lugar
         this.categoria=categoria;
     }
 
-    public Lugar(Long id, String nombre, Float latitud, Float longitud, String comentarios, Float valoracion, Integer categoria) {
+    public Lugar(Long id, String nombre, Double latitud, Double longitud, String comentarios, Float valoracion, Integer categoria) {
         this.id = id;
         this.nombre = nombre;
         this.latitud=latitud;
@@ -55,16 +57,16 @@ public class Lugar
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public Float getLatitud() {
+    public Double getLatitud() {
         return latitud;
     }
-    public void setLatitud(Float latitud) {
+    public void setLatitud(Double latitud) {
         this.latitud = latitud;
     }
-    public Float getLongitud() {
+    public Double getLongitud() {
         return longitud;
     }
-    public void setLongitud(Float longitud) {
+    public void setLongitud(Double longitud) {
         this.longitud = longitud;
     }
     public String getComentarios() {
@@ -87,7 +89,7 @@ public class Lugar
     }
     @Override
     public String toString() {
-        return "Producto {" +
+        return "Lugar {" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", latitud=" + latitud +

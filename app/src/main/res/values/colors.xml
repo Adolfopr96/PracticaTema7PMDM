@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <color name="clrMarcador01">#D81B60</color>
+    <color name="clrMarcador02">#008577</color>
+    <color name="clrMarcador03">#00574B</color>
+    <color name="clrMarcador04">#D81B60</color>
+    <color name="clrMarcador05">#00FF00</color>
+
+
 </resources>

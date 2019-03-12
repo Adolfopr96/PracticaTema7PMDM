@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Spinner;
 
 import com.example.practicatema7pmdm.DataBaseManager.DB_SQLite;
@@ -64,8 +65,8 @@ public class LogicLugar
             do {
                 Long dataId = cursor.getLong(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_ID));
                 String dataNombre = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_NOMBRE));
-                Float dataLatitud = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LATITUD));
-                Float dataLongitud = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LONGITUD));
+                Double dataLatitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LATITUD));
+                Double dataLongitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LONGITUD));
                 String dataComentarios = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_COMENTARIOS));
                 Float dataValoracion = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_VALORACION));
                 int dataCategoria = cursor.getInt(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_CATEGORIA));
@@ -91,8 +92,8 @@ public class LogicLugar
             do {
                 Long dataId = cursor.getLong(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_ID));
                 String dataNombre = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_NOMBRE));
-                Float dataLatitud = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LATITUD));
-                Float dataLongitud = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LONGITUD));
+                Double dataLatitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LATITUD));
+                Double dataLongitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LONGITUD));
                 String dataComentarios = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_COMENTARIOS));
                 Float dataValoracion = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_VALORACION));
                 int dataCategoria = cursor.getInt(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_CATEGORIA));
@@ -102,5 +103,58 @@ public class LogicLugar
         cursor.close();
         DB_SQLite.desconectar(conn);
         return prod;
+    }
+    public static List listaLugar2(Context context, int spinner) {
+        List prod = new ArrayList<>();
+        String[] sqlFields = {Esquema.Lugar.COLUMN_NAME_ID, Esquema.Lugar.COLUMN_NAME_NOMBRE, Esquema.Lugar.COLUMN_NAME_LATITUD, Esquema.Lugar.COLUMN_NAME_LONGITUD, Esquema.Lugar.COLUMN_NAME_COMENTARIOS, Esquema.Lugar.COLUMN_NAME_VALORACION, Esquema.Lugar.COLUMN_NAME_CATEGORIA};
+        String sqlWhere = "categoria=" + spinner;
+        String sqlOrderBy = Esquema.Lugar.COLUMN_NAME_NOMBRE + " ASC";
+
+        SQLiteDatabase conn = DB_SQLite.conectar(context, DB_SQLite.OPEN_MODE_READ);
+        Cursor cursor = conn.query(Esquema.Lugar.TABLE_NAME, sqlFields, sqlWhere, null, null, null, sqlOrderBy);
+        if (cursor.getCount() == 0) {
+            prod = null;
+        } else {
+            cursor.moveToFirst();
+            do {
+                Long dataId = cursor.getLong(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_ID));
+                String dataNombre = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_NOMBRE));
+                Double dataLatitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LATITUD));
+                Double dataLongitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LONGITUD));
+                String dataComentarios = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_COMENTARIOS));
+                Float dataValoracion = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_VALORACION));
+                int dataCategoria = cursor.getInt(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_CATEGORIA));
+                Log.i("MyApp", "RECIBIDO " + dataLongitud.toString() + " " + dataLatitud.toString());
+                prod.add(new Lugar(dataId, dataNombre, dataLatitud, dataLongitud, dataComentarios, dataValoracion, dataCategoria));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        DB_SQLite.desconectar(conn);
+        return prod;
+    }
+    public static Lugar getLugar(Context context, String latitud, String longitud) {
+        Lugar lugar = null;
+        String[] sqlFields = {Esquema.Lugar.COLUMN_NAME_ID, Esquema.Lugar.COLUMN_NAME_NOMBRE, Esquema.Lugar.COLUMN_NAME_LATITUD, Esquema.Lugar.COLUMN_NAME_LONGITUD, Esquema.Lugar.COLUMN_NAME_COMENTARIOS, Esquema.Lugar.COLUMN_NAME_VALORACION, Esquema.Lugar.COLUMN_NAME_CATEGORIA};
+        String sqlWhere = "latitud='" + latitud + "' and longitud='" + longitud + "'";
+        String sqlOrderBy = Esquema.Lugar.COLUMN_NAME_NOMBRE + " ASC";
+
+        SQLiteDatabase conn = DB_SQLite.conectar(context, DB_SQLite.OPEN_MODE_READ);
+        Cursor cursor = conn.query(Esquema.Lugar.TABLE_NAME, sqlFields, sqlWhere, null, null, null, sqlOrderBy);
+
+        if (cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            Long dataId = cursor.getLong(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_ID));
+            String dataNombre = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_NOMBRE));
+            Double dataLatitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LATITUD));
+            Double dataLongitud = cursor.getDouble(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_LONGITUD));
+            String dataComentarios = cursor.getString(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_COMENTARIOS));
+            Float dataValoracion = cursor.getFloat(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_VALORACION));
+            int dataCategoria = cursor.getInt(cursor.getColumnIndex(Esquema.Lugar.COLUMN_NAME_CATEGORIA));
+            lugar = new Lugar(dataId, dataNombre, dataLatitud, dataLongitud, dataComentarios, dataValoracion, dataCategoria);
+        }
+
+        cursor.close();
+        DB_SQLite.desconectar(conn);
+        return lugar;
     }
 }
