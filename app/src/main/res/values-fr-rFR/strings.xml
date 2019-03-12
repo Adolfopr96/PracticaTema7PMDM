@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"mes endroits préférés "</string>
+    <string name="app_name1">ENDROITS:</string>
+    <string name="app_name2">ÉDITER</string>
+    <string name="app_name3">INFORMATION</string>
+    <string name="Borrar">Effacer</string>
+    <string name="categoria">Catégorie</string>
+    <string name="categoria1">Mexicaine</string>
+    <string name="categoria2">Français</string>
+    <string name="categoria3">Espagnol</string>
+    <string name="categoria4">Coréen</string>
+    <string name="comentarios">Commentaires:</string>
+    <string name="editar">Éditer</string>
+    <string name="guardar">Sauvegarder</string>
+    <string name="latitud">Latitude</string>
+    <string name="longitud">Longueur</string>
+    <string name="nombre">Nom:</string>
+    <string name="toast1">Il a été créé correctement</string>
+    <string name="toast2">"Il a été édité correctement "</string>
+    <string name="valoracion">Évaluation:</string>
+</resources>

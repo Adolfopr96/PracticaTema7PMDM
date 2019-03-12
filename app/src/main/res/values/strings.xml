@@ -10,10 +10,9 @@
     <string name="categoria2">Francesa</string>
     <string name="categoria3">Española</string>
     <string name="categoria4">Coreana</string>
-    <string name="categoria5">India</string>
+    <string name="categoria5" translatable="false">India</string>
     <string name="toast1">Se ha creado correctamente</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="longitud">Longitud</string>
     <string name="latitud">Latitud</string>
     <string name="valoracion">Valoración:</string>
@@ -21,6 +20,6 @@
     <string name="guardar">Guardar</string>
     <string name="editar">Editar</string>
     <string name="Borrar">Borrar</string>
-    <string name="global">Global</string>
+    <string name="global" translatable="false">Global</string>
     <string name="toast2">Se ha editado correctamente</string>
 </resources>
